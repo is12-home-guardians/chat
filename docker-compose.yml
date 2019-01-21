@@ -5,4 +5,4 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./:/go/src/github.com/rin1208/go-contests"
+      - "./:/go/src/github.com/is12-home-guardians/chat"
