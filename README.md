@@ -1,4 +1,4 @@
-# go-contests
+# chat
 
 ## How to start
 
@@ -32,4 +32,3 @@ $ yarn start
 $ yarn build
 $ docker-compose restart -d
 ```
-## 元気やる気小野妹子
