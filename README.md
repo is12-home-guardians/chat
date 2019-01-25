@@ -17,7 +17,10 @@ $ docker-compose up -d --build
 ```
 
 ### Debug
-Acccess to localhost:8080
+Acccess to localhost:80 with your browser
+
+- port 80: http-content
+- port 8080: websocket
 
 ### Develop
 - Case: only front-end

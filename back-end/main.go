@@ -6,23 +6,22 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
+
 	spafs "github.com/koron/go-spafs"
 )
 
-var spaAddr = flag.String("spaAddr", ":80", "SPA address")
-var websocketAddr = flag.String("websocketAddr", ":8080", "websocket address")
+var addr = flag.String("addr", ":80", "SPA address")
 
 func main() {
 	flag.Parse()
 
 	// SPA
-    staticContentFs := spafs.FileServer(http.Dir("./../front-end/dist"))
-    err := http.ListenAndServe(*spaAddr, staticContentFs)
-    if err != nil {
-        panic(err)
-	}
+	staticContentFs := spafs.FileServer(http.Dir("./front-end/dist"))
+
+	fmt.Println("Dist listening starting...")
 
 	// websocket
 	handler := http.NewServeMux()
@@ -33,7 +32,9 @@ func main() {
 		serveWs(hub, w, r)
 	})
 
-	err = http.ListenAndServe(*websocketAddr, handler)
+	handler.HandleFunc("/", staticContentFs.ServeHTTP)
+
+	err := http.ListenAndServe(*addr, handler)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

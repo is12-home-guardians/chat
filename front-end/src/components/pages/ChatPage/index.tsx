@@ -48,7 +48,7 @@ class ChatPage extends React.Component<ChatPageProps, ChatPageState> {
         super(props);
         this.chatTextAreaElemet = React.createRef();
 
-        this.webSocketConnection = new WebSocket(`ws://${document.location.hostname}:8080/ws`);
+        this.webSocketConnection = new WebSocket(`ws://${document.location.hostname}/ws`);
         this.webSocketConnection.onclose = (_evt) => {
             this.setState({
                 chatList: this.state.chatList.concat({
