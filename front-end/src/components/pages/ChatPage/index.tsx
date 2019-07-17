@@ -3,6 +3,7 @@ import Button from "src/components/atoms/Button";
 import TextField from "src/components/atoms/TextField";
 import Widget from "src/components/atoms/Widget";
 import MessageLog from "src/components/organisms/MessageLog";
+import config from "src/config";
 import RouterHistoryContext from "src/contexts/RouterHistoryContext";
 import UserContext, { UserValue } from "src/contexts/UserContext";
 import { Chat } from "src/types/model";
@@ -48,7 +49,7 @@ class ChatPage extends React.Component<ChatPageProps, ChatPageState> {
         super(props);
         this.chatTextAreaElemet = React.createRef();
 
-        this.webSocketConnection = new WebSocket(`ws://${document.location.hostname}/ws`);
+        this.webSocketConnection = new WebSocket(`ws://${config.server.host}/ws`);
         this.webSocketConnection.onclose = (_evt) => {
             this.setState({
                 chatList: this.state.chatList.concat({
